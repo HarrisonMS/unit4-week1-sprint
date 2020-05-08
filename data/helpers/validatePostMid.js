@@ -1,4 +1,4 @@
-function validatePostMid(req, res, next) {
+function validateProjectPost(req, res, next) {
   if (!req.body) {
     res
       .status(400)
@@ -14,7 +14,7 @@ function validatePostMid(req, res, next) {
         'we need a description key value pair please somthing like "description: i describe this post" and put it in an object if you could',
     });
   } else {
-    req.body.user_id = req.user.id;
+    // req.body.user_id = req.user.id;
     next();
   }
 }
@@ -46,6 +46,6 @@ function validateActionPost(req, res, next) {
 }
 
 module.exports = {
-  validatePostMid: validatePostMid,
+  validateProjectPost: validateProjectPost,
   validateActionPost: validateActionPost,
 };

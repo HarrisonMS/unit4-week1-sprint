@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Projects = require("../data/helpers/projectModel");
 const { validateProjectId } = require("../data/helpers/validateId");
+const { validateProjectPost } = require("../data/helpers/validatePostMid");
 
 //get all Projects in database
 
@@ -43,7 +44,7 @@ router.get("/:id/actions", validateProjectId, (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", validateProjectPost, (req, res) => {
   const projData = req.body;
   Projects.insert(projData)
     .then((project) => {
