@@ -28,4 +28,19 @@ router.get("/:id", validateProjectId, (req, res) => {
       res.status(500).json({ errorMessage: error.message });
     });
 });
+
+// gets all actions correlated with the project id
+router.get("/:id/actions", validateProjectId, (req, res) => {
+  const { id } = req.params;
+  Projects.getProjectActions(id)
+    .then((actions) => {
+      console.log(actions);
+      res.status(200).json(actions);
+    })
+    .catch((error) => {
+      console.log(error.message);
+      res.status(500).json({ errorMessage: error.message });
+    });
+});
+
 module.exports = router;
