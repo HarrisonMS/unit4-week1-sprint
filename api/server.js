@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const { logger } = require("../data/helpers/loggerMid");
+const projectsRouter = require("../routes/projectsRouter");
+const actionsRouter = require("../routes/actionsRouter");
 
 // Global middleware
 server.use(morgan("dev"));
@@ -14,6 +16,8 @@ server.use(logger);
 server.use(express.json());
 
 //route handlers
+server.use("/api/projects", projectsRouter);
+server.use("/api/actions", actionsRouter);
 
 server.get("/", (req, res) => {
   res.send(`<h2>Let's write some middleware!</h2>`);
