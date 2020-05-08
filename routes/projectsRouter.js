@@ -66,7 +66,24 @@ router.put("/:id", (req, res) => {
       project ? res.status(201).send(project) : res.status(404).send(`idk`);
     })
     .catch((error) => {
-      res.status(500).json({ error });
+      console.log(error.message);
+      res.status(500).json({ errorMessage: error.message });
     });
 });
+
+// delete a project by its project_id
+router.delete("/:id", validateProjectId, (req, res) => {
+  const { id } = req.params;
+  Projects.remove(id)
+    .then((count) => {
+      res.status(200).json({
+        message: `you just deleted ${count} project hope you finished it`,
+      });
+    })
+    .catch((error) => {
+      console.log(error.message);
+      res.status(500).json({ errorMessage: error.message });
+    });
+});
+
 module.exports = router;
