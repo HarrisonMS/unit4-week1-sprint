@@ -18,7 +18,34 @@ function validatePostMid(req, res, next) {
     next();
   }
 }
+function validateActionPost(req, res, next) {
+  let id = req.body.project_id;
+  Projects.get(id)
+    .then((project) => {
+      if (project) {
+        if (!req.body) {
+          res.status(400).json({ message: "missing action data" });
+        } else {
+          if (
+            !req.body.description ||
+            !req.body.notes ||
+            !req.body.project_id
+          ) {
+            res
+              .status(400)
+              .json({ message: "missing description notes or a project_id" });
+          } else {
+            next();
+          }
+        }
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ success: false, error });
+    });
+}
 
 module.exports = {
   validatePostMid: validatePostMid,
+  validateActionPost: validateActionPost,
 };
