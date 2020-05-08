@@ -43,4 +43,16 @@ router.get("/:id/actions", validateProjectId, (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  const projData = req.body;
+  Projects.insert(projData)
+    .then((project) => {
+      res.status(200).json(project);
+    })
+    .catch((error) => {
+      console.log(error.message);
+      res.status(500).json({ errorMessage: error.message });
+    });
+});
+
 module.exports = router;
