@@ -40,4 +40,19 @@ router.post("/", validateActionPost, (req, res) => {
       res.status(500).json({ errorMessage: error.message });
     });
 });
+
+// time now to update a action based on its id
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const updatedAction = req.body;
+  Actions.update(id, updatedAction)
+    .then((action) => {
+      action ? res.status(201).send(action) : res.status(404).send(`idk`);
+    })
+    .catch((error) => {
+      console.log(error.message);
+      res.status(500).json({ errorMessage: error.message });
+    });
+});
+
 module.exports = router;
