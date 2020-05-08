@@ -1,3 +1,5 @@
+const Projects = require("./projectModel");
+
 function validateProjectPost(req, res, next) {
   if (!req.body) {
     res
