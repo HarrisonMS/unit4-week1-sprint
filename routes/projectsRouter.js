@@ -15,4 +15,16 @@ router.get("/", (req, res) => {
     });
 });
 
+// gets project by project id
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  Projects.get(id)
+    .then((project) => {
+      res.status(200).json(project);
+    })
+    .catch((error) => {
+      console.log(error.message);
+      res.status(500).json({ errorMessage: error.message });
+    });
+});
 module.exports = router;
