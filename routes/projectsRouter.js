@@ -44,6 +44,7 @@ router.get("/:id/actions", validateProjectId, (req, res) => {
     });
 });
 
+//post a new  project to data base needs name and description on body
 router.post("/", validateProjectPost, (req, res) => {
   const projData = req.body;
   Projects.insert(projData)
@@ -55,5 +56,17 @@ router.post("/", validateProjectPost, (req, res) => {
       res.status(500).json({ errorMessage: error.message });
     });
 });
-
+/// did not see the get in the update model was trying to chain .thens to show projects but this is way fancier
+// make a note of this models helper good stuff in there
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const putProj = req.body;
+  Projects.update(id, putProj)
+    .then((project) => {
+      project ? res.status(201).send(project) : res.status(404).send(`idk`);
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    });
+});
 module.exports = router;
