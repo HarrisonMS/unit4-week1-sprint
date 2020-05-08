@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Projects = require("../data/helpers/projectModel");
+const { validateProjectId } = require("../data/helpers/validateId");
 
 //get all Projects in database
 
@@ -16,7 +17,7 @@ router.get("/", (req, res) => {
 });
 
 // gets project by project id
-router.get("/:id", (req, res) => {
+router.get("/:id", validateProjectId, (req, res) => {
   const { id } = req.params;
   Projects.get(id)
     .then((project) => {
