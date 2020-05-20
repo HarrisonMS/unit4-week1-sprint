@@ -39,15 +39,15 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 - [ ] Mention two parts of Express that you learned about this week.
-express.router && middleware 
+
 - [ ] Describe Middleware?
-middleware a function that kinda sits int he middle after a router call and before the router function. Middleware is can be used to extract tedious error messages for validation and other purposes and just puts it into a reusable function that you can place in the middle of any router calls.. then there is also global middleware that if place appropriately.. like in the server .js file after const express you can import them and then use them and they will be used on every db call a good example is the logger we created or morgan cors helmet
+
 - [ ] Describe a Resource?
-a resource is everything
+
 - [ ] What can the API return to help clients know if a request was successful?
-an appropriate status code like res.status(200).json({message: 'atta boy you did it here is that data', data}) the data may come after the message object i forget i usually just giv them a 200 and return the objectives
+
 - [ ] How can we partition our application into sub-applications?
-by making use of the express.router... see /api/server.js for two examples
+
 ## Minimum Viable Product
 
 - [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
